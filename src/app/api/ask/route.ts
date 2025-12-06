@@ -87,12 +87,12 @@ export async function POST(req: NextRequest) {
           }
         }
 
-        // 3) 如果没 userId 或 RPC 不存在/失败，则做一个“兜底检索”（不按 userId 过滤）
+        // 3) 没 userId 或 RPC 不存在/失败：兜底检索（示例：不做相似度排序）
         if (contextBlocks.length === 0) {
           const { data, error } = await supabaseAdmin
             .from("doc_chunks") // 若你的表名不同，改这里
             .select("content, embedding")
-            .limit(topK); // 简化：这里没有在 SQL 里做相似度排序（最小 MVP 可接受）
+            .limit(topK);
           if (!error && Array.isArray(data)) {
             contextBlocks = data.map((d: any) => d.content).filter(Boolean);
           }
