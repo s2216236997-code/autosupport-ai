@@ -1,8 +1,7 @@
-// src/lib/supabaseAdmin.ts
 import { createClient } from "@supabase/supabase-js";
 
 export const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE!,
+  process.env.SUPABASE_URL!,            // ← 使用私密 URL
+  process.env.SUPABASE_SERVICE_ROLE!,   // ← 使用 service_role
   { auth: { persistSession: false } }
 );
