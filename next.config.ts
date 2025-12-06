@@ -1,10 +1,6 @@
 import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+const nextConfig = {
   reactStrictMode: true,
-  experimental: {
-    serverActions: true,
-  },
-};
-
+  experimental: { serverActions: {} },
+} satisfies NextConfig;
 export default nextConfig;
